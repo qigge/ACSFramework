@@ -1,0 +1,67 @@
+//
+//  PrefixHeader.pch
+//  ZQFramework
+//
+//  Created by wang on 2018/2/9.
+//  Copyright © 2018年 qigge. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "Masonry.h"
+#import "SVProgressHUD.h"
+#import "ReactiveObjC.h"
+
+#import "Define.h"
+
+
+#import "UIColor+ACSHexColor.h"
+#import "UIView+ACSSize.h"
+
+//调试模式下输入NSLog，发布后不再输入。
+#if DEBUG
+#define NSLog(s , ... )  NSLog(@"[%@ in line:%d %s] \n %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__,__FUNCTION__, [NSString stringWithFormat:(s), ##__VA_ARGS__])
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(FORMAT, ...)
+#define debugMethod()
+#endif
+
+//----------方法简写-------
+#define mAppDelegate        (AppDelegate *)[[UIApplication sharedApplication] delegate]
+#define mKeyWindow          [[UIApplication sharedApplication] keyWindow]
+#define mUserDefaults       [NSUserDefaults standardUserDefaults]
+#define mNotificationCenter [NSNotificationCenter defaultCenter]
+//系统目录
+#define mDocuments  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
+
+#define WeakObj(o) autoreleasepool{} __weak typeof(o) o##Weak = o;
+#define StrongObj(o) autoreleasepool{} __strong typeof(o) o = o##Weak;
+
+
+//----------页面设计相关-------
+//屏幕的宽高
+#define mScreenWidth [UIScreen mainScreen].bounds.size.width
+#define mScreenHeight [UIScreen mainScreen].bounds.size.height
+//屏幕大小
+#define mScreenSize [UIScreen mainScreen].bounds
+//状态栏的高度
+#define mStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+//导航栏的高度
+#define mNavBarHeight       (self.navigationController.navigationBar.frame.size.height)
+//导航栏+状态栏的高度
+#define mTopHeight (mStatusBarHeight + mNavBarHeight)
+#define mTabBarHeight       (self.tabBarController.tabBar.frame.size.height)
+
+//----------设备系统相关---------
+#define mIsPad      (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define mAPPVersion      [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+#define mSystemVersion   ([[UIDevice currentDevice] systemVersion])
+#define mCurrentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])
+
+
+#endif /* PrefixHeader_pch */
