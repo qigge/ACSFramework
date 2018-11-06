@@ -12,7 +12,6 @@
 @interface ACSWebViewController : ACSBaseViewController
 
 @property (nonatomic, strong) WKWebView *webView;
-@property (nonatomic,   weak) WKWebViewConfiguration *webConfiguration;
 
 /** 进入条颜色 默认：#0485d1 */
 @property (nonatomic, copy) UIColor *progressViewColor;

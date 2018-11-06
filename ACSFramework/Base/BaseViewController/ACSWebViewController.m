@@ -78,8 +78,6 @@
     preferences.javaScriptCanOpenWindowsAutomatically = YES;
     configuration.preferences = preferences;
     
-    _webConfiguration = configuration;
-    
     CGRect f = self.view.bounds;
     if (self.navigationController && self.isHidenNaviBar == NO) {
         f = CGRectMake(0, mTopHeight, self.view.bounds.size.width, self.view.bounds.size.height - mTopHeight);

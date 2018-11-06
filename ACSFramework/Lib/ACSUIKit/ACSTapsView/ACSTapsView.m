@@ -18,6 +18,8 @@
         _index = 0;
         _defaultColor = [UIColor blackColor];
         _selectedColor = [UIColor redColor];
+        _btnFont = [UIFont systemFontOfSize:17];
+        _btnSelectFont = [UIFont boldSystemFontOfSize:17];
         _dataArr = arr;
         
         [self setUI];
@@ -40,14 +42,14 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(idx * width, 0, width, self.frame.size.height - 2);
         [btn setTitle:str forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:17];
+        btn.titleLabel.font = self.btnFont;
         [btn setTitleColor:self->_defaultColor forState:UIControlStateNormal];
         [btn setTitleColor:self->_selectedColor forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
         if (idx == self->_index) {
             btn.selected = YES;
-            btn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+            btn.titleLabel.font = self.btnSelectFont;
         }
         [tempArr addObject:btn];
     }];

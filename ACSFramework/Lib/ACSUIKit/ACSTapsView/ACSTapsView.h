@@ -29,6 +29,10 @@
 @property (nonatomic, strong) UIColor *defaultColor;
 /** 选中的颜色（默认red） */
 @property (nonatomic, strong) UIColor *selectedColor;
+/** 按钮字体 默认常规17 */
+@property (nonatomic, strong) UIFont *btnFont;
+/** 选择按钮字体 默认粗体17 */
+@property (nonatomic, strong) UIFont *btnSelectFont;
 
 @property (nonatomic, weak) id<ACSTapsViewDelegate> delegate;
 
