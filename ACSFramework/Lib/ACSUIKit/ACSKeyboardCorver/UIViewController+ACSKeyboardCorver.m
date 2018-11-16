@@ -36,7 +36,28 @@ char acsHideKeyBoardGrKey;
 
 // 清理通知和移除手势
 - (void)acs_clearNotificationAndGesture {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+
+#pragma mark - UIGestureRecognizerDelegate
+
+// 手势代理方法
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    // 判断如果点击的View是UICollectionView就可以执行手势方法，否则不执行
+    UIView *view = touch.view;
+    while (view) {
+        if ([view isKindOfClass:[UITableView class]] ||
+            [view isKindOfClass:[UICollectionView class]] ||
+            [view isKindOfClass:[UITableViewCell class]] ||
+            [view isKindOfClass:[UICollectionViewCell class]] ) {
+            return NO;
+        }else {
+            view = view.superview;
+        }
+    }
+    return YES;
 }
 
 #pragma mark - 单击手势调用
