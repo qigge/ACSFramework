@@ -112,7 +112,7 @@ static NSString *const DZNSwizzleInfoSelectorKey = @"selector";
 // Based on Bryce Buchanan's swizzling technique http://blog.newrelic.com/2014/04/16/right-way-to-swizzle/
 // And Juzzin's ideas https://github.com/juzzin/JUSEmptyViewController
 
-void dzn_original_implementation(id self, SEL _cmd)
+void ACS_dzn_original_implementation(id self, SEL _cmd)
 {
     // Fetch original implementation from lookup table
     Class baseClass = acs_baseClassToSwizzleForTarget(self);
@@ -195,7 +195,7 @@ Class acs_baseClassToSwizzleForTarget(id target)
     
     // Swizzle by injecting additional implementation
     Method method = class_getInstanceMethod(baseClass, selector);
-    IMP dzn_newImplementation = method_setImplementation(method, (IMP)dzn_original_implementation);
+    IMP dzn_newImplementation = method_setImplementation(method, (IMP)ACS_dzn_original_implementation);
     
     // Store the new implementation in the lookup table
     NSDictionary *swizzledInfo = @{DZNSwizzleInfoOwnerKey: baseClass,
