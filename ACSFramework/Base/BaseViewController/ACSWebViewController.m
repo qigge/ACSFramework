@@ -8,7 +8,7 @@
 
 #import "ACSWebViewController.h"
 
-@interface ACSWebViewController () <WKNavigationDelegate,WKUIDelegate,UIWebViewDelegate,UIScrollViewDelegate,WKScriptMessageHandler>
+@interface ACSWebViewController () <WKNavigationDelegate,WKUIDelegate,UIWebViewDelegate,WKScriptMessageHandler>
 
 @property (nonatomic, assign) double lastProgress;//上次进度条位置
 @property (nonatomic, strong) UIProgressView *progressView;
@@ -59,13 +59,6 @@
 #pragma mark - Notification Methods
 
 
-/** 公有方法 */
-#pragma mark - public Methods
-
-- (void)updateNavigationItems {
-    
-}
-
 /** 私有方法 */
 #pragma mark - Private Methods
 
@@ -87,7 +80,6 @@
     _webView.navigationDelegate = self;
     _webView.UIDelegate = self;
     _webView.backgroundColor = [UIColor clearColor];
-    _webView.scrollView.delegate = self;
     _webView.allowsBackForwardNavigationGestures = YES;//打开网页间的 滑动返回
     _webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
     [_webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
@@ -208,9 +200,6 @@
     self.title = webView.title;
     [self updateProgress:webView.estimatedProgress];
     
-    //更新导航栏按钮
-    [self updateNavigationItems];
-    
     //处理是否适应屏幕缩放
     if (self.isChangeScale) {
         NSString *injectionJSString = @"var script = document.createElement('meta');"
@@ -219,17 +208,6 @@
         "script.content=\"user-scalable=no\";"
         "document.getElementsByTagName('head')[0].appendChild(script);";
         [webView evaluateJavaScript:injectionJSString completionHandler:nil];
-    }
-    
-    self.allowZoom = NO;
-}
-
-//控制缩放
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    if (self.allowZoom) {
-        return nil;
-    } else {
-        return self.webView.scrollView.subviews.firstObject;
     }
 }
 

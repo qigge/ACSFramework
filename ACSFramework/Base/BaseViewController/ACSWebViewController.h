@@ -22,17 +22,9 @@
 /** 是否适应屏幕比例缩放 */
 @property (nonatomic, assign) BOOL isChangeScale;
 
-/** 是否禁止缩放 */
-@property (nonatomic, assign) BOOL allowZoom;
-
 /** 加载前是否清除网页缓存 */
 @property (nonatomic, assign) BOOL cleanBool;
 
-/** 更新进度条 */
-- (void)updateProgress:(double)progress;
-
-/** 更新导航栏按钮，子类去实现 */
-- (void)updateNavigationItems;
 
 @end
 
