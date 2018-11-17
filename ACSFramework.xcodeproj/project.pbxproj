@@ -11,7 +11,6 @@
 		2105A5B820942F9700888F59 /* ACSPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5A320942F9600888F59 /* ACSPaddingLabel.m */; };
 		2105A5B920942F9700888F59 /* ACSPaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5A520942F9600888F59 /* ACSPaddingTextField.m */; };
 		2105A5BA20942F9700888F59 /* ACSPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5A720942F9600888F59 /* ACSPlaceholderTextView.m */; };
-		2105A5BB20942F9700888F59 /* ACSTapsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5A920942F9600888F59 /* ACSTapsView.m */; };
 		2105A5BC20942F9700888F59 /* NSString+ACSSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5AB20942F9600888F59 /* NSString+ACSSize.m */; };
 		2105A5BD20942F9700888F59 /* UIButton+ACSImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5AD20942F9600888F59 /* UIButton+ACSImagePosition.m */; };
 		2105A5BE20942F9700888F59 /* UIColor+ACSHexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5AF20942F9600888F59 /* UIColor+ACSHexColor.m */; };
@@ -37,6 +36,7 @@
 		218CF93C20C15CA2002B6993 /* AppDelegate+ACSUmeng.m in Sources */ = {isa = PBXBuildFile; fileRef = 218CF93B20C15CA2002B6993 /* AppDelegate+ACSUmeng.m */; };
 		218CF93F20C23EF6002B6993 /* ACSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218CF93E20C23EF6002B6993 /* ACSTabBarController.m */; };
 		218CF94220C23F7B002B6993 /* ACSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218CF94120C23F7B002B6993 /* ACSNavigationController.m */; };
+		219A9A2D219FD0740076B6B5 /* ACSTapsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 219A9A2C219FD0740076B6B5 /* ACSTapsView.m */; };
 		21E56AF6210839AE00F59BD0 /* ACSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E56AF5210839AE00F59BD0 /* ACSWebViewController.m */; };
 		21E56AF92108564600F59BD0 /* ACSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E56AF82108564600F59BD0 /* ACSTableViewController.m */; };
 		21E56B0D21085F0000F59BD0 /* UIView+ZJFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E56AFD21085F0000F59BD0 /* UIView+ZJFrame.m */; };
@@ -91,8 +91,6 @@
 		2105A5A520942F9600888F59 /* ACSPaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSPaddingTextField.m; sourceTree = "<group>"; };
 		2105A5A620942F9600888F59 /* ACSPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSPlaceholderTextView.h; sourceTree = "<group>"; };
 		2105A5A720942F9600888F59 /* ACSPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSPlaceholderTextView.m; sourceTree = "<group>"; };
-		2105A5A820942F9600888F59 /* ACSTapsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSTapsView.h; sourceTree = "<group>"; };
-		2105A5A920942F9600888F59 /* ACSTapsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSTapsView.m; sourceTree = "<group>"; };
 		2105A5AA20942F9600888F59 /* NSString+ACSSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ACSSize.h"; sourceTree = "<group>"; };
 		2105A5AB20942F9600888F59 /* NSString+ACSSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ACSSize.m"; sourceTree = "<group>"; };
 		2105A5AC20942F9600888F59 /* UIButton+ACSImagePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ACSImagePosition.h"; sourceTree = "<group>"; };
@@ -144,6 +142,8 @@
 		218CF93E20C23EF6002B6993 /* ACSTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACSTabBarController.m; sourceTree = "<group>"; };
 		218CF94020C23F7B002B6993 /* ACSNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACSNavigationController.h; sourceTree = "<group>"; };
 		218CF94120C23F7B002B6993 /* ACSNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACSNavigationController.m; sourceTree = "<group>"; };
+		219A9A2B219FD0740076B6B5 /* ACSTapsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSTapsView.h; sourceTree = "<group>"; };
+		219A9A2C219FD0740076B6B5 /* ACSTapsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSTapsView.m; sourceTree = "<group>"; };
 		21E56AF4210839AB00F59BD0 /* ACSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSWebViewController.h; sourceTree = "<group>"; };
 		21E56AF5210839AE00F59BD0 /* ACSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSWebViewController.m; sourceTree = "<group>"; };
 		21E56AF72108564600F59BD0 /* ACSTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACSTableViewController.h; sourceTree = "<group>"; };
@@ -384,8 +384,8 @@
 		211ADD1F2139544000ED8140 /* ACSTapsView */ = {
 			isa = PBXGroup;
 			children = (
-				2105A5A820942F9600888F59 /* ACSTapsView.h */,
-				2105A5A920942F9600888F59 /* ACSTapsView.m */,
+				219A9A2B219FD0740076B6B5 /* ACSTapsView.h */,
+				219A9A2C219FD0740076B6B5 /* ACSTapsView.m */,
 			);
 			path = ACSTapsView;
 			sourceTree = "<group>";
@@ -700,7 +700,7 @@
 				TargetAttributes = {
 					4AEDE2421FEA9EF50036655F = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -791,18 +791,20 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ACSFramework/Pods-ACSFramework-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ACSFramework/Pods-ACSFramework-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ACSFramework/Pods-ACSFramework-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ACSFramework/Pods-ACSFramework-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -821,9 +823,9 @@
 				21233E5B20D90198001BE91D /* ACSErrorView.m in Sources */,
 				4AEDE2561FEA9EF50036655F /* main.m in Sources */,
 				21E56B0E21085F0000F59BD0 /* UIViewController+ZJScrollPageController.m in Sources */,
+				219A9A2D219FD0740076B6B5 /* ACSTapsView.m in Sources */,
 				21E56B1021085F0000F59BD0 /* ZJContentView.m in Sources */,
 				21E56B1221085F0000F59BD0 /* ZJScrollSegmentView.m in Sources */,
-				2105A5BB20942F9700888F59 /* ACSTapsView.m in Sources */,
 				2105A5C220942F9700888F59 /* UIViewController+ACSKeyboardCorver.m in Sources */,
 				21E56B0F21085F0000F59BD0 /* ZJCollectionView.m in Sources */,
 				2105A5BF20942F9700888F59 /* UIScrollView+ACSEmpty.m in Sources */,
@@ -1004,7 +1006,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1033,7 +1036,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";

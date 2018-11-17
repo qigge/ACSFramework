@@ -62,7 +62,7 @@ char acsHideKeyBoardGrKey;
 
 #pragma mark - 单击手势调用
 - (void)p_acs_tapGestureHandel{
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [[UIApplication sharedApplication].delegate.window endEditing:YES];
 }
 
 #pragma mark - 查找第一响应者

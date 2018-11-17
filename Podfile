@@ -8,6 +8,7 @@ target 'ACSFramework' do
     pod 'MJRefresh'
     pod 'Masonry'
     pod 'ReactiveObjC'
+    pod 'IQKeyboardManager'
     
     pod 'SDCycleScrollView' #图片无限轮播器
     

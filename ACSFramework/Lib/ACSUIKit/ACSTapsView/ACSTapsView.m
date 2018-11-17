@@ -10,32 +10,43 @@
 
 @implementation ACSTapsView {
     UIView *_redLineView;
-    NSArray *_subBtnArr;
+    NSArray<UIButton *> *_subBtnArr;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame tapArr:(NSArray<NSString *> *)arr {
-    if (self = [self initWithFrame:frame]) {
-        _index = 0;
-        _defaultColor = [UIColor blackColor];
-        _selectedColor = [UIColor redColor];
-        _btnFont = [UIFont systemFontOfSize:17];
-        _btnSelectFont = [UIFont boldSystemFontOfSize:17];
-        _dataArr = arr;
-        
-        [self setUI];
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    [self initUI];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initUI];
     }
     return self;
 }
 
+- (void)initUI {
+    _index = 0;
+    _defaultColor = [UIColor blackColor];
+    _selectedColor = [UIColor redColor];
+    _btnFont = [UIFont systemFontOfSize:17];
+    _btnSelectFont = [UIFont boldSystemFontOfSize:17];
+    
+    _redLineView = [[UIView alloc] init];
+    [self addSubview:_redLineView];
+}
+
+
 - (void)setUI {
-    for (UIView *view in self.subviews) {
+    for (UIView *view in _subBtnArr) {
         [view removeFromSuperview];
     }
     
-    CGFloat width = self.frame.size.width/_dataArr.count;
-    _redLineView = [[UIView alloc] initWithFrame:CGRectMake(width/2 - 49/2, self.frame.size.height - 2, 49, 2.0f)];
+    CGFloat width = _dataArr.count == 0 ?0: self.frame.size.width/_dataArr.count;
+    _redLineView.frame = CGRectMake(width/2 - 49/2, self.frame.size.height - 2, width==0 ?:49, 2.0f);
     _redLineView.backgroundColor = _selectedColor;
-    [self addSubview:_redLineView];
     
     NSMutableArray *tempArr = [NSMutableArray array];
     [_dataArr enumerateObjectsUsingBlock:^(NSString * _Nonnull str, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -78,12 +89,12 @@
     _index = index;
     
     if (index < _subBtnArr.count) {
-        UIButton *btn = _subBtnArr[index];
         for (UIButton *tempbtn in _subBtnArr) {
             tempbtn.selected = NO;
-            tempbtn.titleLabel.font = [UIFont systemFontOfSize:17];
+            tempbtn.titleLabel.font = _btnFont;
         }
-        btn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+        UIButton *btn = _subBtnArr[index];
+        btn.titleLabel.font = _btnSelectFont;
         btn.selected = YES;
         
         CGFloat width = self.frame.size.width/_dataArr.count;
@@ -102,20 +113,38 @@
     [self setUI];
 }
 
-- (void)setDefaultColor:(UIColor *)defaultColor {
-    _defaultColor = defaultColor;
-    for (UIButton *tempbtn in _subBtnArr) {
-        [tempbtn setTitleColor:_defaultColor forState:UIControlStateNormal];
-    }
-}
-- (void)setSelectedColor:(UIColor *)selectedColor {
-    _selectedColor = selectedColor;
-    for (UIButton *tempbtn in _subBtnArr) {
-        [tempbtn setTitleColor:_selectedColor forState:UIControlStateSelected];
-    }
-    _redLineView.backgroundColor = _selectedColor;
-}
-
+//- (void)setDefaultColor:(UIColor *)defaultColor {
+//    _defaultColor = defaultColor;
+//    for (UIButton *tempbtn in _subBtnArr) {
+//        [tempbtn setTitleColor:_defaultColor forState:UIControlStateNormal];
+//    }
+//}
+//- (void)setSelectedColor:(UIColor *)selectedColor {
+//    _selectedColor = selectedColor;
+//    for (UIButton *tempbtn in _subBtnArr) {
+//        [tempbtn setTitleColor:_selectedColor forState:UIControlStateSelected];
+//    }
+//    _redLineView.backgroundColor = _selectedColor;
+//}
+//
+//- (void)setBtnFont:(UIFont *)btnFont {
+//    _btnFont = btnFont;
+//    for (UIButton *tempbtn in _subBtnArr) {
+//        tempbtn.titleLabel.font = btnFont;
+//    }
+//    if (self.index < _subBtnArr.count) {
+//        UIButton *btn = _subBtnArr[self.index];
+//        btn.titleLabel.font = _btnSelectFont;
+//    }
+//}
+//
+//- (void)setBtnSelectFont:(UIFont *)btnSelectFont {
+//    _btnSelectFont = btnSelectFont;
+//    if (self.index < _subBtnArr.count) {
+//        UIButton *btn = _subBtnArr[self.index];
+//        btn.titleLabel.font = _btnSelectFont;
+//    }
+//}
 
 
 @end

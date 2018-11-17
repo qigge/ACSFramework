@@ -18,11 +18,6 @@
 /** 选项卡TapView */
 @interface ACSTapsView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame tapArr:(NSArray<NSString *> *)arr;
-
-/** 标题数组 （设置这个重新更新标题）*/
-@property (nonatomic, strong)  NSArray<NSString *> *dataArr;
-
 /** 选中的序号 (0开始 ） */
 @property (nonatomic, assign) NSInteger index;
 /** 默认颜色 */
@@ -33,6 +28,13 @@
 @property (nonatomic, strong) UIFont *btnFont;
 /** 选择按钮字体 默认粗体17 */
 @property (nonatomic, strong) UIFont *btnSelectFont;
+
+/**
+ 标题数组（设置这个重新更新标题）
+ 
+ 先设置好前面的属性后，再设置次属性
+ */
+@property (nonatomic, strong)  NSArray<NSString *> *dataArr;
 
 @property (nonatomic, weak) id<ACSTapsViewDelegate> delegate;
 
