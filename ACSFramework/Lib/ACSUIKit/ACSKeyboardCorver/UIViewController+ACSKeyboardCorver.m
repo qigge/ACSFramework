@@ -22,16 +22,31 @@ char acsHideKeyBoardGrKey;
     objc_setAssociatedObject(self, &acsHideKeyBoardGrKey, hideKeyBoardGr, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+
+#pragma mark - Private Method
+
+/**
+ 添加隐藏键盘手势
+ */
+- (void)addHideKeyboardTapGR {
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(p_acs_tapGestureHandel)];
+    [self.view addGestureRecognizer:tapGr];
+    self.hideKeyBoardGr = tapGr;
+}
+
+/**
+ 移除隐藏键盘手势
+ */
+- (void)removeHideKeyboardTapGR {
+    [self.view removeGestureRecognizer:self.hideKeyBoardGr];
+}
+
+
 #pragma mark - public method
 // 添加键盘通知 和手势
 - (void)acs_addKeyboardCorverNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotify:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotify:) name:UIKeyboardWillHideNotification object:nil];
-    
-    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(p_acs_tapGestureHandel)];
-    tapGr.delegate = self;
-    [self.view addGestureRecognizer:tapGr];
-    self.hideKeyBoardGr = tapGr;
 }
 
 // 清理通知和移除手势
@@ -40,25 +55,6 @@ char acsHideKeyBoardGrKey;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-
-#pragma mark - UIGestureRecognizerDelegate
-
-// 手势代理方法
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    // 判断如果点击的View是UICollectionView就可以执行手势方法，否则不执行
-    UIView *view = touch.view;
-    while (view) {
-        if ([view isKindOfClass:[UITableView class]] ||
-            [view isKindOfClass:[UICollectionView class]] ||
-            [view isKindOfClass:[UITableViewCell class]] ||
-            [view isKindOfClass:[UICollectionViewCell class]] ) {
-            return NO;
-        }else {
-            view = view.superview;
-        }
-    }
-    return YES;
-}
 
 #pragma mark - 单击手势调用
 - (void)p_acs_tapGestureHandel{
@@ -116,6 +112,7 @@ char acsHideKeyBoardGrKey;
                 self.view.transform = CGAffineTransformMakeTranslation(0, offsetY);
             }
         }
+        [self addHideKeyboardTapGR];
     }else if ([notify.name isEqualToString:UIKeyboardWillHideNotification]){//键盘隐藏
         if (duration > 0) {
             [UIView animateWithDuration:duration delay:0 options:curve animations:^{
@@ -126,6 +123,7 @@ char acsHideKeyBoardGrKey;
         }else{
             self.view.transform = CGAffineTransformIdentity;
         }
+        [self removeHideKeyboardTapGR];
     }
 }
 
