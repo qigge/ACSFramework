@@ -24,35 +24,9 @@ typedef NS_ENUM(NSUInteger, ACSRequestError) {
     ACSRequestOtherError = 2002
 };
 
-@interface RequestModel : NSObject
-+ (AFHTTPSessionManager *)shareInstanceAFManager;
-- (AFHTTPSessionManager *)afManager;
+@interface ACSRequest : NSObject
 
-#pragma mark - RAC Get & Post
-/**
- GET
- @param url 地址
- @param param 参数
- @return 信号
- */
-- (RACSignal *)getWithUrl:(NSString *)url parameters:(NSDictionary *)param;
-/**
- POST
- @param url 地址
- @param param 参数
- @return 信号
- */
-- (RACSignal *)postWithUrl:(NSString *)url parameters:(NSDictionary *)param;
-
-/**
- POST 带URL
- 
- @param url 地址
- @param param 参数
- @param block 其他附加图片或者文件
- @return 信号
- */
-- (RACSignal *)postWithUrl:(NSString *)url parameters:(NSDictionary *)param constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block;
++ (AFHTTPSessionManager *)shareAFManager;
 
 
 #pragma mark - GET & POST
@@ -63,7 +37,7 @@ typedef NS_ENUM(NSUInteger, ACSRequestError) {
  @param params 参数
  @param block 回掉
  */
-- (NSURLSessionDataTask *)GetDataWithPath:(NSString *)aPath
++ (NSURLSessionDataTask *)GetDataWithPath:(NSString *)aPath
                                withParams:(NSDictionary*)params
                                  andBlock:(void (^)(ACSRequestError code, id data, NSString *msg))block;
 /**
@@ -73,7 +47,22 @@ typedef NS_ENUM(NSUInteger, ACSRequestError) {
  @param params 参数
  @param block 回掉
  */
-- (NSURLSessionDataTask *)PostDataWithPath:(NSString *)aPath
++ (NSURLSessionDataTask *)PostDataWithPath:(NSString *)aPath
+                                withParams:(NSDictionary*)params
+                                  andBlock:(void (^)(ACSRequestError code, id data, NSString *msg))block;
+
+
+/**
+ Post 带发送文件
+
+ @param aPath 地址
+ @param constructingBodyBlock 发送文件Block
+ @param params 参数
+ @param block 回掉
+ @return NSURLSessionDataTask
+ */
++ (NSURLSessionDataTask *)PostDataWithPath:(NSString *)aPath
+                 constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))constructingBodyBlock
                                 withParams:(NSDictionary*)params
                                   andBlock:(void (^)(ACSRequestError code, id data, NSString *msg))block;
 
@@ -83,7 +72,7 @@ typedef NS_ENUM(NSUInteger, ACSRequestError) {
  @param downloadProgressBlock 下载进度
  @param completionHandler 完成后的Block
  */
-- (void)downloadPath:(NSString *)path
++ (void)downloadPath:(NSString *)path
             progress:(void (^)(CGFloat downloadProgress))downloadProgressBlock
    completionHandler:(void (^)(NSString *filePath, NSError * _Nullable error, BOOL isFromCache))completionHandler;
 @end

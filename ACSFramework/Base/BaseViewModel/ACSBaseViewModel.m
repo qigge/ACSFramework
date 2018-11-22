@@ -11,22 +11,10 @@
 @implementation ACSBaseViewModel
 
 - (void)getData{
-    // 网络请求示例
-    RACSignal *signal = [self.requestModel getWithUrl:@"http://www.baidu.com" parameters:nil];
-    [signal subscribeNext:^(id  _Nullable x) {
-        NSLog(@"%@",x);
-    }];
-    [signal subscribeError:^(NSError * _Nullable error) {
-        NSLog(@"%@",error);
+    [ACSRequest GetDataWithPath:@"http://www.baidu.com" withParams:nil andBlock:^(ACSRequestError code, id data, NSString *msg) {
+        
     }];
 }
 
-#pragma mark - Getter & Setter
-- (RequestModel *)requestModel {
-    if (!_requestModel) {
-        _requestModel = [[RequestModel alloc] init];
-    }
-    return _requestModel;
-}
 
 @end

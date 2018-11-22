@@ -24,7 +24,7 @@
 		2105A5D62094372E00888F59 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5CF2094372E00888F59 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2105A5DB209438BA00888F59 /* TimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5DA209438BA00888F59 /* TimeTool.m */; };
 		211133A1202EF4C700972E71 /* ACSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 211133A0202EF4C700972E71 /* ACSBaseViewController.m */; };
-		211133A8202EF93800972E71 /* RequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 211133A7202EF93800972E71 /* RequestModel.m */; };
+		211133A8202EF93800972E71 /* ACSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 211133A7202EF93800972E71 /* ACSRequest.m */; };
 		21233E5620D8B089001BE91D /* ACSLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21233E5520D8B089001BE91D /* ACSLoadingView.m */; };
 		21233E5820D8B234001BE91D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21233E5720D8B234001BE91D /* Images.xcassets */; };
 		21233E5B20D90198001BE91D /* ACSErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21233E5A20D90198001BE91D /* ACSErrorView.m */; };
@@ -118,8 +118,8 @@
 		2105A5DA209438BA00888F59 /* TimeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTool.m; sourceTree = "<group>"; };
 		2111339F202EF4C700972E71 /* ACSBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACSBaseViewController.h; sourceTree = "<group>"; };
 		211133A0202EF4C700972E71 /* ACSBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACSBaseViewController.m; sourceTree = "<group>"; };
-		211133A6202EF93800972E71 /* RequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestModel.h; sourceTree = "<group>"; };
-		211133A7202EF93800972E71 /* RequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestModel.m; sourceTree = "<group>"; };
+		211133A6202EF93800972E71 /* ACSRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACSRequest.h; sourceTree = "<group>"; };
+		211133A7202EF93800972E71 /* ACSRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACSRequest.m; sourceTree = "<group>"; };
 		21233E5420D8B089001BE91D /* ACSLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACSLoadingView.h; sourceTree = "<group>"; };
 		21233E5520D8B089001BE91D /* ACSLoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACSLoadingView.m; sourceTree = "<group>"; };
 		21233E5720D8B234001BE91D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -294,8 +294,8 @@
 		211133A5202EF91D00972E71 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				211133A6202EF93800972E71 /* RequestModel.h */,
-				211133A7202EF93800972E71 /* RequestModel.m */,
+				211133A6202EF93800972E71 /* ACSRequest.h */,
+				211133A7202EF93800972E71 /* ACSRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -849,7 +849,7 @@
 				2105A5C120942F9700888F59 /* UIView+ACSSize.m in Sources */,
 				218CF93920C152CD002B6993 /* AppDelegate+ACSNetWorkReachability.m in Sources */,
 				2105A5D32094372E00888F59 /* AuthorizationTool.m in Sources */,
-				211133A8202EF93800972E71 /* RequestModel.m in Sources */,
+				211133A8202EF93800972E71 /* ACSRequest.m in Sources */,
 				21E56AF6210839AE00F59BD0 /* ACSWebViewController.m in Sources */,
 				21E56B0D21085F0000F59BD0 /* UIView+ZJFrame.m in Sources */,
 				211133A1202EF4C700972E71 /* ACSBaseViewController.m in Sources */,

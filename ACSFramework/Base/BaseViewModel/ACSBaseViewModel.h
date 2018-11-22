@@ -8,14 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RequestModel.h"
+#import "ACSRequest.h"
 
 @interface ACSBaseViewModel : NSObject
-
-/**
- 网络请求模型
- */
-@property (nonatomic, strong) RequestModel *requestModel;
 
 
 @end
