@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 
 /**
  网络请求返回类型
