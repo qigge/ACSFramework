@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/qigge/ACSFramework"
   s.license      = { :type => "MIT", :file => "LICENSE" }
-  s.author             = { "Eric" => "wangzeqi2013@foxmail.com" }
+  s.author       = { "Eric" => "wangzeqi2013@foxmail.com" }
 
   s.platform     = :ios
   s.ios.deployment_target = "8.0"
@@ -64,5 +64,6 @@ Pod::Spec.new do |s|
     end
     s.subspec 'ACSRequest' do |sp|
         sp.source_files  = "ACSFramework/Base/Request/"
+        sp.dependency "AFNetworking"
     end
 end
