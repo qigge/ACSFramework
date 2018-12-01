@@ -8,42 +8,56 @@
 
 #import "ACSRequest.h"
 
-
-static AFHTTPSessionManager *_afManager;
+static ACSRequest* _instance;
 
 @implementation ACSRequest
 
 
-+ (AFHTTPSessionManager *)shareAFManager {
-    static dispatch_once_t onceToken;
++ (instancetype) shareInstance {
+    static dispatch_once_t onceToken ;
     dispatch_once(&onceToken, ^{
+        _instance = [[ACSRequest alloc] init];
+    }) ;
+    return _instance ;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
         _afManager = [AFHTTPSessionManager manager];
         _afManager.requestSerializer.timeoutInterval = 15;
         _afManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"text/plain",nil];
         
-        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-        [securityPolicy setAllowInvalidCertificates:YES];
-        [securityPolicy setValidatesDomainName:NO];
-        _afManager.securityPolicy = securityPolicy;
-    });
-    return _afManager;
+        self.dealResponseBlock = ^void(id response, acsResponseBlock callbackBlcok) {
+            if ([response isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dic = response;
+                NSInteger code = [dic[@"code"] integerValue];
+                callbackBlcok(code, dic[@"data"],dic[@"msg"]);
+            }else {
+                callbackBlcok(ACSRequestServerError, nil, nil);
+            }
+        };
+        
+//        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+//        [securityPolicy setAllowInvalidCertificates:YES];
+//        [securityPolicy setValidatesDomainName:NO];
+//        _afManager.securityPolicy = securityPolicy;
+    }
+    return self;
 }
 
 
+
 #pragma mark - GET & POST
-+ (NSURLSessionDataTask *)GetDataWithPath:(NSString *)aPath
+- (NSURLSessionDataTask *)GetDataWithPath:(NSString *)aPath
                                withParams:(NSDictionary*)params
-                                 andBlock:(void (^)(ACSRequestError code, id data, NSString *msg))block {
+                                 andBlock:(acsResponseBlock)block {
     
-    NSURLSessionDataTask *getDataTask = [[self shareAFManager] GET:aPath parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSURLSessionDataTask *getDataTask = [self.afManager GET:aPath parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *dic = responseObject;
-            NSInteger code = [dic[@"code"] integerValue];
-            block(code, dic[@"data"],dic[@"msg"]);
-        }else {
-            block(ACSRequestServerError, nil, nil);
+        if (self.dealResponseBlock) {
+            self.dealResponseBlock(responseObject, block);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         block(ACSRequestNetworkError, nil, nil);
@@ -51,17 +65,13 @@ static AFHTTPSessionManager *_afManager;
     return getDataTask;
 }
 
-+ (NSURLSessionDataTask *)PostDataWithPath:(NSString *)aPath
+- (NSURLSessionDataTask *)PostDataWithPath:(NSString *)aPath
                                 withParams:(NSDictionary*)params
-                                  andBlock:(void (^)(ACSRequestError code, id data, NSString *msg))block {
+                                  andBlock:(acsResponseBlock)block {
     
-    NSURLSessionDataTask *postDataTask = [[self shareAFManager] POST:aPath parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *dic = responseObject;
-            NSInteger code = [dic[@"code"] integerValue];
-            block(code, dic[@"data"],dic[@"msg"]);
-        }else {
-            block(ACSRequestServerError, nil, nil);
+    NSURLSessionDataTask *postDataTask = [self.afManager POST:aPath parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (self.dealResponseBlock) {
+            self.dealResponseBlock(responseObject, block);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         block(ACSRequestNetworkError, nil, error.localizedFailureReason);
@@ -69,17 +79,13 @@ static AFHTTPSessionManager *_afManager;
     return postDataTask;
 }
 
-+ (NSURLSessionDataTask *)PostDataWithPath:(NSString *)aPath
+- (NSURLSessionDataTask *)PostDataWithPath:(NSString *)aPath
 constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))constructingBodyBlock
                                 withParams:(NSDictionary*)params
-                                  andBlock:(void (^)(ACSRequestError code, id data, NSString *msg))block {
-    NSURLSessionDataTask *postDataTask = [[self shareAFManager] POST:aPath parameters:params constructingBodyWithBlock:constructingBodyBlock progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *dic = responseObject;
-            NSInteger code = [dic[@"code"] integerValue];
-            block(code, dic[@"data"],dic[@"msg"]);
-        }else {
-            block(ACSRequestServerError, nil, nil);
+                                  andBlock:(acsResponseBlock)block {
+    NSURLSessionDataTask *postDataTask = [self.afManager POST:aPath parameters:params constructingBodyWithBlock:constructingBodyBlock progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (self.dealResponseBlock) {
+            self.dealResponseBlock(responseObject, block);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         block(ACSRequestNetworkError, nil, error.localizedFailureReason);
@@ -88,7 +94,7 @@ constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))construct
 }
 
 #pragma mark - Download
-+ (void)downloadPath:(NSString *)path
+- (void)downloadPath:(NSString *)path
             progress:(void (^)(CGFloat downloadProgress))downloadProgressBlock
    completionHandler:(void (^)(NSString *filePath, NSError * _Nullable error, BOOL isFromCache))completionHandler {
     if (!path || path.length == 0) {
@@ -123,7 +129,7 @@ constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))construct
     }else {
         // 下载文件
         NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:path parameters:nil error:nil];
-        NSURLSessionDownloadTask *downloadSrtTask = [[self shareAFManager] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        NSURLSessionDownloadTask *downloadSrtTask = [self.afManager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
             if (downloadProgressBlock) {
                 downloadProgressBlock(1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
             }

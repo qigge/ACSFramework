@@ -11,7 +11,7 @@
 @implementation ACSBaseViewModel
 
 - (void)getData{
-    [ACSRequest GetDataWithPath:@"http://www.baidu.com" withParams:nil andBlock:^(ACSRequestError code, id data, NSString *msg) {
+    [[ACSRequest shareInstance] GetDataWithPath:@"http://www.baidu.com" withParams:@{} andBlock:^(ACSRequestError code, id data, NSString *msg) {
         
     }];
 }
