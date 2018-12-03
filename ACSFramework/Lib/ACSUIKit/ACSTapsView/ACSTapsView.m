@@ -8,9 +8,13 @@
 
 #import "ACSTapsView.h"
 
+#define kACSSpaceWidth 10.0f
+
 @implementation ACSTapsView {
     UIView *_redLineView;
     NSArray<UIButton *> *_subBtnArr;
+    UIScrollView *_scrollView;
+    CGFloat _width;
 }
 
 - (void)awakeFromNib {
@@ -29,35 +33,40 @@
 
 - (void)initUI {
     _index = 0;
+    _showLineView = YES;
     _defaultColor = [UIColor blackColor];
     _selectedColor = [UIColor redColor];
     _btnFont = [UIFont systemFontOfSize:17];
     _btnSelectFont = [UIFont boldSystemFontOfSize:17];
-    
-    _redLineView = [[UIView alloc] init];
-    [self addSubview:_redLineView];
-}
 
+    _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+    _scrollView.showsVerticalScrollIndicator = NO;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    [self addSubview:_scrollView];
+    _redLineView = [[UIView alloc] init];
+    [_scrollView addSubview:_redLineView];
+}
 
 - (void)setUI {
     for (UIView *view in _subBtnArr) {
         [view removeFromSuperview];
     }
     
-    CGFloat width = _dataArr.count == 0 ?0: self.frame.size.width/_dataArr.count;
-    _redLineView.frame = CGRectMake(width/2 - 49/2, self.frame.size.height - 2, width==0 ?:49, 2.0f);
+    _width = [self getMaxWidth];
+    _redLineView.frame = CGRectMake(_width/4, self.frame.size.height - 2, _width==0 ?:_width/2, 2.0f);
     _redLineView.backgroundColor = _selectedColor;
+    _redLineView.hidden = !_showLineView;
     
     NSMutableArray *tempArr = [NSMutableArray array];
     [_dataArr enumerateObjectsUsingBlock:^(NSString * _Nonnull str, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(idx * width, 0, width, self.frame.size.height - 2);
+        btn.frame = CGRectMake(idx * self->_width, 0, self->_width, self.frame.size.height - 2);
         [btn setTitle:str forState:UIControlStateNormal];
         btn.titleLabel.font = self.btnFont;
         [btn setTitleColor:self->_defaultColor forState:UIControlStateNormal];
         [btn setTitleColor:self->_selectedColor forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:btn];
+        [self->_scrollView addSubview:btn];
         if (idx == self->_index) {
             btn.selected = YES;
             btn.titleLabel.font = self.btnSelectFont;
@@ -65,6 +74,27 @@
         [tempArr addObject:btn];
     }];
     _subBtnArr = tempArr;
+
+    _scrollView.contentSize = CGSizeMake(_width * _dataArr.count, self.frame.size.height);
+}
+
+#pragma mark - 计算每个BUTTON的宽度
+
+- (CGFloat)getMaxWidth {
+    __block CGFloat width = 0;
+    [_dataArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGFloat tempWidth = [obj boundingRectWithSize:CGSizeMake(MAXFLOAT, self.frame.size.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.btnSelectFont} context:nil].size.width;
+        if (tempWidth > width) {
+            width = tempWidth;
+        }
+    }];
+
+    if ((width + kACSSpaceWidth) * _dataArr.count < self.bounds.size.width) {
+        width = self.bounds.size.width/_dataArr.count;
+    }else {
+        width += kACSSpaceWidth;
+    }
+    return width;
 }
 
 #pragma mark - Event
@@ -96,11 +126,10 @@
         UIButton *btn = _subBtnArr[index];
         btn.titleLabel.font = _btnSelectFont;
         btn.selected = YES;
-        
-        CGFloat width = self.frame.size.width/_dataArr.count;
+
         // 移动红色的View
         CGRect redLineFrame = _redLineView.frame;
-        redLineFrame.origin.x = btn.frame.origin.x + width/2 - redLineFrame.size.width/2;
+        redLineFrame.origin.x = btn.frame.origin.x + _width/4;
         [self redLineViewAnimateWithFrame:redLineFrame];
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(acs_tapsViewSelectedIndex:)]) {

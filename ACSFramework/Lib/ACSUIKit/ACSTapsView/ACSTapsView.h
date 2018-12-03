@@ -28,6 +28,8 @@
 @property (nonatomic, strong) UIFont *btnFont;
 /** 选择按钮字体 默认粗体17 */
 @property (nonatomic, strong) UIFont *btnSelectFont;
+/** 是否展示下滑的View */
+@property (nonatomic, assign) BOOL showLineView;
 
 /**
  标题数组（设置这个重新更新标题）
