@@ -22,6 +22,16 @@
     }
     return self;
 }
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    _maxLenght = 0;
+    _placeholderColor = [UIColor lightGrayColor];
+
+    // 使用通知监听文字改变
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acs_textViewTextDicChange) name:UITextViewTextDidChangeNotification object:self];
+}
+
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     // 如果有文字，就直接返回，不需要画占位文字
