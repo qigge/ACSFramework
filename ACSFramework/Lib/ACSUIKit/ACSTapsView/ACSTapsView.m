@@ -23,6 +23,11 @@
     [self initUI];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _scrollView.frame = self.bounds;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
