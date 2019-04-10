@@ -10,7 +10,6 @@
 
 #import <Photos/Photos.h>
 #import <UserNotifications/UserNotifications.h>
-#import <CoreLocation/CoreLocation.h>
 //#import <AddressBook/AddressBook.h>
 
 @implementation ACSAuthorizationTool

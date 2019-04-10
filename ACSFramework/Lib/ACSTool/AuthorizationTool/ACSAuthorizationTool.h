@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 /// Asset 授权的状态
 typedef NS_ENUM(NSUInteger, ACSAssetAuthorizationStatus) {
