@@ -15,6 +15,9 @@
 /** 是否隐藏导航栏,默认情况是NO */
 @property (nonatomic, assign) BOOL isHidenNaviBar;
 
+/** 是否添加底部安全距离，默认为NO */
+@property (nonatomic, assign) BOOL isAddBottomSafeArea;
+
 #pragma mark - 需重写
 /**
  搭建UI，需重写

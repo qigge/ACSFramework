@@ -11,6 +11,9 @@
 
 @interface ACSNavigationController ()<UINavigationControllerDelegate>
 
+// 记录push标志 防止navigation多次push一个页面
+@property (nonatomic, getter=isPushing) BOOL pushing;
+
 @end
 
 @implementation ACSNavigationController
@@ -19,13 +22,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.delegate = self;
+    self.interactivePopGestureRecognizer.delegate = (id)self;
+    
     /*设置navigationbar的颜色*/
     self.navigationBar.barTintColor = [UIColor whiteColor];
     /*设置statusbar的字体颜色*/
     self.navigationBar.barStyle = UIBarStyleDefault;
     
     // 设置导航栏标题字体颜色和大小
-    NSDictionary *fontDict = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor  blackColor],NSForegroundColorAttributeName, [UIFont systemFontOfSize:19],NSFontAttributeName,nil];
+    NSDictionary *fontDict = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor  acs_hexStringToColor:@"#1A1A1A"],NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17],NSFontAttributeName,nil];
     self.navigationBar.titleTextAttributes = fontDict;
 }
 
@@ -43,6 +49,40 @@
         [self.navigationBar setShadowImage:nil];
     }
 }
+
+
+#pragma mark - UINavigationControllerDelegate
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if (self.pushing == YES) {
+        NSLog(@"被拦截");
+        return;
+    } else {
+        NSLog(@"push");
+        self.pushing = YES;
+    }
+    if (self.viewControllers.count > 0) {
+        self.interactivePopGestureRecognizer.enabled = YES;
+    }
+    
+    [super pushViewController:viewController animated:animated];
+}
+
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ([viewController isKindOfClass:[ACSBaseViewController class]]) {
+        ACSBaseViewController *vc = (ACSBaseViewController *)viewController;
+        [self setNavigationBarHidden:vc.isHidenNaviBar animated:YES];
+    }
+}
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    self.pushing = NO;
+    if (navigationController.viewControllers.count == 1) {
+        self.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+
+
 #pragma mark - 状态栏颜色
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return self.topViewController.preferredStatusBarStyle;
@@ -60,21 +100,6 @@
 //这个是返回优先方向
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return [self.topViewController preferredInterfaceOrientationForPresentation];
-}
-
-#pragma mark - UINavigationControllerDelegate
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    
-    if ([viewController isKindOfClass:[ACSBaseViewController class]]) {
-        ACSBaseViewController * vc = (ACSBaseViewController *)viewController;
-        if (vc.isHidenNaviBar) {
-            vc.view.acs_top = 0;
-            [vc.navigationController setNavigationBarHidden:YES animated:animated];
-        } else {
-            vc.view.acs_top = mTopHeight;
-            [vc.navigationController setNavigationBarHidden:NO animated:animated];
-        }
-    }
 }
 
 

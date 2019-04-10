@@ -8,7 +8,6 @@
 
 #import "ACSBaseViewController.h"
 #import "ACSLoadingView.h"
-#import <UMAnalytics/MobClick.h>        // 统计组件
 
 @interface ACSBaseViewController ()
 {
@@ -24,6 +23,7 @@
     self = [super init];
     if (self) {
         _isHidenNaviBar = NO;
+        _isAddBottomSafeArea = NO;
     }
     return self;
 }
@@ -60,17 +60,6 @@
  页面获取数据，需重写
  */
 - (void)acs_getData {}
-
-#pragma mark - 友盟页面统计
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [MobClick beginLogPageView:NSStringFromClass([self class])];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [MobClick endLogPageView:NSStringFromClass([self class])];
-}
 
 #pragma mark - Public Method
 /** 开始加载 */
@@ -109,6 +98,15 @@
         [self.navigationController popViewControllerAnimated:YES];
     }else {
         [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (void)setIsAddBottomSafeArea:(BOOL)isAddBottomSafeArea {
+    _isAddBottomSafeArea = isAddBottomSafeArea;
+    if (@available(iOS 11.0, *)) {
+        if (_isAddBottomSafeArea) {
+            self.view.acs_height -= self.navigationController.view.safeAreaInsets.bottom;
+        }
     }
 }
 
