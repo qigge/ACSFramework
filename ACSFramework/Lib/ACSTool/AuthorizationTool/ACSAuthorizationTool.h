@@ -17,7 +17,8 @@ typedef NS_ENUM(NSUInteger, ACSAssetAuthorizationStatus) {
 
 typedef void(^ACSAuthorizationBlock)(ACSAssetAuthorizationStatus status);
 
-@interface AuthorizationTool : NSObject
+
+@interface ACSAuthorizationTool : NSObject
 
 /**
  检查相册权限
@@ -34,12 +35,13 @@ typedef void(^ACSAuthorizationBlock)(ACSAssetAuthorizationStatus status);
 /**
  检查定位权限
  */
-+ (BOOL)hasLocationAuthrization;
++ (void)hasLocationAuthrizationWithBlock:(ACSAuthorizationBlock)block;
 
 /**
  检查推送权限
  */
-+ (BOOL)hasNotificationAuthrization;
++ (void)hasNotificationAuthrizationWithBlock:(ACSAuthorizationBlock)block;
+
 /**
  通讯录权限
  */

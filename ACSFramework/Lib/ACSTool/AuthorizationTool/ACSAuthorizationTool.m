@@ -6,10 +6,13 @@
 //  Copyright © 2018年 qigge. All rights reserved.
 //
 
-#import "AuthorizationTool.h"
-#import <Photos/Photos.h>
+#import "ACSAuthorizationTool.h"
 
-@implementation AuthorizationTool
+#import <Photos/Photos.h>
+#import <UserNotifications/UserNotifications.h>
+//#import <AddressBook/AddressBook.h>
+
+@implementation ACSAuthorizationTool
 
 + (BOOL)InfoDicHasKey:(NSString *)key {
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
@@ -23,7 +26,7 @@
  检查相册权限
  */
 + (void)hasPhotoAuthrizationWithBlock:(ACSAuthorizationBlock)block {
-    NSAssert([AuthorizationTool InfoDicHasKey:@"NSPhotoLibraryUsageDescription"],@"Info.plist must add NSPhotoLibraryUsageDescription");
+    NSAssert([ACSAuthorizationTool InfoDicHasKey:@"NSPhotoLibraryUsageDescription"],@"Info.plist must add NSPhotoLibraryUsageDescription");
     PHAuthorizationStatus photoAuthorStatus = [PHPhotoLibrary authorizationStatus];
     if (photoAuthorStatus == PHAuthorizationStatusRestricted ||
         photoAuthorStatus == PHAuthorizationStatusDenied) {
@@ -55,7 +58,7 @@
  检查相机权限
  */
 + (void)hasVideoAuthrizationWithBlock:(ACSAuthorizationBlock)block {
-    NSAssert([AuthorizationTool InfoDicHasKey:@"NSCameraUsageDescription"],@"Info.plist must add NSCameraUsageDescription");
+    NSAssert([ACSAuthorizationTool InfoDicHasKey:@"NSCameraUsageDescription"],@"Info.plist must add NSCameraUsageDescription");
     AVAuthorizationStatus AVstatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];//相机权限
     if (AVstatus == AVAuthorizationStatusDenied ||
         AVstatus == AVAuthorizationStatusRestricted) {
@@ -81,11 +84,12 @@
         }
     }
 }
+
 /**
  检查麦克风权限
  */
 + (void)hasAudioAuthrizationWithBlock:(ACSAuthorizationBlock)block  {
-    NSAssert([AuthorizationTool InfoDicHasKey:@"NSMicrophoneUsageDescription"],@"Info.plist must add NSMicrophoneUsageDescription");
+    NSAssert([ACSAuthorizationTool InfoDicHasKey:@"NSMicrophoneUsageDescription"],@"Info.plist must add NSMicrophoneUsageDescription");
     AVAuthorizationStatus AVstatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];//麦克风权限
     if (AVstatus == AVAuthorizationStatusDenied ||
         AVstatus == AVAuthorizationStatusRestricted) {
@@ -111,34 +115,61 @@
         }
     }
 }
+
 /**
  检查定位权限
  */
-+ (BOOL)hasLocationAuthrization {
-    NSAssert([AuthorizationTool InfoDicHasKey:@"NSLocationWhenInUseUsageDescription"] ||
-             [AuthorizationTool InfoDicHasKey:@"NSLocationUsageDescription"],
++ (void)hasLocationAuthrizationWithBlock:(ACSAuthorizationBlock)block {
+    NSAssert([ACSAuthorizationTool InfoDicHasKey:@"NSLocationWhenInUseUsageDescription"] ||
+             [ACSAuthorizationTool InfoDicHasKey:@"NSLocationUsageDescription"],
              @"Info.plist must add NSLocationWhenInUseUsageDescription || NSLocationUsageDescription");
     BOOL isLocation = [CLLocationManager locationServicesEnabled];
+    ACSAssetAuthorizationStatus status = ACSAssetAuthorizationStatusAuthorized;
     if (!isLocation) {
-        return NO;
+        status = ACSAssetAuthorizationStatusNotAuthorized;
+    }else {
+        CLAuthorizationStatus CLstatus = [CLLocationManager authorizationStatus];
+        if (CLstatus == kCLAuthorizationStatusDenied ||
+            CLstatus == kCLAuthorizationStatusRestricted) {
+            status = ACSAssetAuthorizationStatusNotAuthorized;
+        }else if (CLstatus == kCLAuthorizationStatusNotDetermined) {
+            status = ACSAssetAuthorizationStatusNotDetermined;
+        }
     }
-    CLAuthorizationStatus CLstatus = [CLLocationManager authorizationStatus];
-    if (CLstatus == kCLAuthorizationStatusDenied ||
-        CLstatus == kCLAuthorizationStatusRestricted) {
-        return NO;
+    if (block) {
+        block(status);
     }
-    return YES;
 }
 
 /**
  检查推送权限
  */
-+ (BOOL)hasNotificationAuthrization {
-    UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-    if (settings.types == UIUserNotificationTypeNone) {
-        return NO;
++ (void)hasNotificationAuthrizationWithBlock:(ACSAuthorizationBlock)block {
+    if (@available(iOS 10 , *)) {
+        [[UNUserNotificationCenter currentNotificationCenter] getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+            ACSAssetAuthorizationStatus status = ACSAssetAuthorizationStatusAuthorized;
+            if (settings.authorizationStatus == UNAuthorizationStatusDenied) {
+                // 没权限
+                status = ACSAssetAuthorizationStatusNotAuthorized;
+            }else if (settings.authorizationStatus == UNAuthorizationStatusNotDetermined) {
+                status = ACSAssetAuthorizationStatusNotDetermined;
+            }
+            if (block) {
+                block(status);
+            }
+        }];
     }
-    return YES;
+    else if (@available(iOS 8 , *)) {
+        UIUserNotificationSettings * setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        ACSAssetAuthorizationStatus status = ACSAssetAuthorizationStatusAuthorized;
+        if (setting.types == UIUserNotificationTypeNone) {
+            // 没权限
+            status = ACSAssetAuthorizationStatusNotAuthorized;
+        }
+        if (block) {
+            block(status);
+        }
+    }
 }
 /**
  通讯录权限

@@ -17,7 +17,7 @@
 		2105A5C020942F9700888F59 /* UIView+ACSLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5B320942F9600888F59 /* UIView+ACSLayer.m */; };
 		2105A5C120942F9700888F59 /* UIView+ACSSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5B520942F9600888F59 /* UIView+ACSSize.m */; };
 		2105A5C220942F9700888F59 /* UIViewController+ACSKeyboardCorver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5B720942F9600888F59 /* UIViewController+ACSKeyboardCorver.m */; };
-		2105A5D32094372E00888F59 /* AuthorizationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5C62094372E00888F59 /* AuthorizationTool.m */; };
+		2105A5D32094372E00888F59 /* ACSAuthorizationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5C62094372E00888F59 /* ACSAuthorizationTool.m */; };
 		2105A5D42094372E00888F59 /* DeviceTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5C92094372E00888F59 /* DeviceTool.m */; };
 		2105A5D52094372E00888F59 /* EncryptionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5CC2094372E00888F59 /* EncryptionTool.m */; };
 		2105A5D62094372E00888F59 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5CF2094372E00888F59 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -104,8 +104,8 @@
 		2105A5B520942F9600888F59 /* UIView+ACSSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ACSSize.m"; sourceTree = "<group>"; };
 		2105A5B620942F9600888F59 /* UIViewController+ACSKeyboardCorver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ACSKeyboardCorver.h"; sourceTree = "<group>"; };
 		2105A5B720942F9600888F59 /* UIViewController+ACSKeyboardCorver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ACSKeyboardCorver.m"; sourceTree = "<group>"; };
-		2105A5C52094372E00888F59 /* AuthorizationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationTool.h; sourceTree = "<group>"; };
-		2105A5C62094372E00888F59 /* AuthorizationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationTool.m; sourceTree = "<group>"; };
+		2105A5C52094372E00888F59 /* ACSAuthorizationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSAuthorizationTool.h; sourceTree = "<group>"; };
+		2105A5C62094372E00888F59 /* ACSAuthorizationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSAuthorizationTool.m; sourceTree = "<group>"; };
 		2105A5C82094372E00888F59 /* DeviceTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTool.h; sourceTree = "<group>"; };
 		2105A5C92094372E00888F59 /* DeviceTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTool.m; sourceTree = "<group>"; };
 		2105A5CB2094372E00888F59 /* EncryptionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptionTool.h; sourceTree = "<group>"; };
@@ -237,8 +237,8 @@
 		2105A5C42094372E00888F59 /* AuthorizationTool */ = {
 			isa = PBXGroup;
 			children = (
-				2105A5C52094372E00888F59 /* AuthorizationTool.h */,
-				2105A5C62094372E00888F59 /* AuthorizationTool.m */,
+				2105A5C52094372E00888F59 /* ACSAuthorizationTool.h */,
+				2105A5C62094372E00888F59 /* ACSAuthorizationTool.m */,
 			);
 			path = AuthorizationTool;
 			sourceTree = "<group>";
@@ -858,7 +858,7 @@
 				2105A5BC20942F9700888F59 /* NSString+ACSSize.m in Sources */,
 				2105A5C120942F9700888F59 /* UIView+ACSSize.m in Sources */,
 				218CF93920C152CD002B6993 /* AppDelegate+ACSNetWorkReachability.m in Sources */,
-				2105A5D32094372E00888F59 /* AuthorizationTool.m in Sources */,
+				2105A5D32094372E00888F59 /* ACSAuthorizationTool.m in Sources */,
 				211133A8202EF93800972E71 /* ACSRequest.m in Sources */,
 				21E56AF6210839AE00F59BD0 /* ACSWebViewController.m in Sources */,
 				21E56B0D21085F0000F59BD0 /* UIView+ZJFrame.m in Sources */,
