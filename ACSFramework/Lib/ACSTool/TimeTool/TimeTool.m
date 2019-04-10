@@ -66,6 +66,21 @@
     return [formatter stringFromDate:[NSDate date]];
 }
 
++ (NSString *)tomorrowDateWithFormatter:(NSString *)formatterStr {
+    NSCalendar *gregorian = [NSCalendar currentCalendar];
+    NSDateComponents *components = [gregorian components:NSCalendarUnitWeekday |NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
+    [components setDay:([components day]+1)];
+    NSDate *beginningOfWeek = [gregorian dateFromComponents:components];
+    NSDateFormatter *dateday = [[NSDateFormatter alloc] init];
+    [dateday setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
+    if (formatterStr) {
+        [dateday setDateFormat:formatterStr];
+    }else {
+        [dateday setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    }
+    return [dateday stringFromDate:beginningOfWeek];
+}
+
 /**
  获取当前时间戳
  @return 格式化的时间字符串

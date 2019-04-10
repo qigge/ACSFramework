@@ -25,16 +25,25 @@
 + (NSString *)timeStampStringToStringWithTimeStamp:(NSString *)timeStamp formatter:(NSString *)formatterStr ;
 
 /**
- 获取当前时间字符串
+ 获取今天时间字符串
  @param formatterStr 时间格式 默认 yyyy-MM-dd HH:mm:ss
  @return 格式化的时间字符串
  */
 + (NSString *)currentDateWithFormatter:(NSString *)formatterStr;
 
 /**
+ 获取明天时间字符串
+ @param formatterStr 时间格式 默认 yyyy-MM-dd HH:mm:ss
+ @return 格式化的时间字符串
+ */
++ (NSString *)tomorrowDateWithFormatter:(NSString *)formatterStr;
+
+/**
  获取当前时间戳
  @return 格式化的时间字符串
  */
 + (NSTimeInterval)currentTimeStamp;
+
+
 
 @end
