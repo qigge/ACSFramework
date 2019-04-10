@@ -10,7 +10,6 @@
 #import "ACSTabBarController.h"
 #import "AppDelegate+ACSAPNS.h"
 #import "AppDelegate+ACSNetWorkReachability.h"
-#import "AppDelegate+ACSUmeng.h"
 
 @interface AppDelegate ()
 

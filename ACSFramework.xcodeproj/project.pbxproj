@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19221739A3D8A679645E9D5B /* libPods-ACSFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC57281198E3381A75AE0A5 /* libPods-ACSFramework.a */; };
 		2105A5B820942F9700888F59 /* ACSPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5A320942F9600888F59 /* ACSPaddingLabel.m */; };
 		2105A5B920942F9700888F59 /* ACSPaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5A520942F9600888F59 /* ACSPaddingTextField.m */; };
 		2105A5BA20942F9700888F59 /* ACSPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105A5A720942F9600888F59 /* ACSPlaceholderTextView.m */; };
@@ -33,7 +32,6 @@
 		218CF92B20BFA703002B6993 /* UIFont+ACSFontToFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 218CF92A20BFA703002B6993 /* UIFont+ACSFontToFit.m */; };
 		218CF93620C14B4E002B6993 /* AppDelegate+ACSAPNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 218CF93520C14B4E002B6993 /* AppDelegate+ACSAPNS.m */; };
 		218CF93920C152CD002B6993 /* AppDelegate+ACSNetWorkReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 218CF93820C152CD002B6993 /* AppDelegate+ACSNetWorkReachability.m */; };
-		218CF93C20C15CA2002B6993 /* AppDelegate+ACSUmeng.m in Sources */ = {isa = PBXBuildFile; fileRef = 218CF93B20C15CA2002B6993 /* AppDelegate+ACSUmeng.m */; };
 		218CF93F20C23EF6002B6993 /* ACSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218CF93E20C23EF6002B6993 /* ACSTabBarController.m */; };
 		218CF94220C23F7B002B6993 /* ACSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218CF94120C23F7B002B6993 /* ACSNavigationController.m */; };
 		219A9A2D219FD0740076B6B5 /* ACSTapsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 219A9A2C219FD0740076B6B5 /* ACSTapsView.m */; };
@@ -52,6 +50,7 @@
 		4AEDE2561FEA9EF50036655F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEDE2551FEA9EF50036655F /* main.m */; };
 		4AEDE2601FEA9EF50036655F /* ACSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEDE25F1FEA9EF50036655F /* ACSTests.m */; };
 		4AEDE26B1FEA9EF50036655F /* ACSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEDE26A1FEA9EF50036655F /* ACSUITests.m */; };
+		FB3F87D954DDF0A45077BB61 /* Pods_ACSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 763FD8F7636EA00B97C2957D /* Pods_ACSFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,8 +135,6 @@
 		218CF93520C14B4E002B6993 /* AppDelegate+ACSAPNS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ACSAPNS.m"; sourceTree = "<group>"; };
 		218CF93720C152CD002B6993 /* AppDelegate+ACSNetWorkReachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ACSNetWorkReachability.h"; sourceTree = "<group>"; };
 		218CF93820C152CD002B6993 /* AppDelegate+ACSNetWorkReachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ACSNetWorkReachability.m"; sourceTree = "<group>"; };
-		218CF93A20C15CA2002B6993 /* AppDelegate+ACSUmeng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ACSUmeng.h"; sourceTree = "<group>"; };
-		218CF93B20C15CA2002B6993 /* AppDelegate+ACSUmeng.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ACSUmeng.m"; sourceTree = "<group>"; };
 		218CF93D20C23EF6002B6993 /* ACSTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACSTabBarController.h; sourceTree = "<group>"; };
 		218CF93E20C23EF6002B6993 /* ACSTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACSTabBarController.m; sourceTree = "<group>"; };
 		218CF94020C23F7B002B6993 /* ACSNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACSNavigationController.h; sourceTree = "<group>"; };
@@ -177,7 +174,7 @@
 		4AEDE2661FEA9EF50036655F /* ACSFrameworkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACSFrameworkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AEDE26A1FEA9EF50036655F /* ACSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACSUITests.m; sourceTree = "<group>"; };
 		4AEDE26C1FEA9EF50036655F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4EC57281198E3381A75AE0A5 /* libPods-ACSFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ACSFramework.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		763FD8F7636EA00B97C2957D /* Pods_ACSFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ACSFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF42B203D93EE4408BD0FB6E /* Pods-ACSFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACSFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ACSFramework/Pods-ACSFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		F77DFA20DF870AFAA3159CAA /* Pods-ACSFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACSFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-ACSFramework/Pods-ACSFramework.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,7 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19221739A3D8A679645E9D5B /* libPods-ACSFramework.a in Frameworks */,
+				FB3F87D954DDF0A45077BB61 /* Pods_ACSFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,8 +426,6 @@
 				218CF93520C14B4E002B6993 /* AppDelegate+ACSAPNS.m */,
 				218CF93720C152CD002B6993 /* AppDelegate+ACSNetWorkReachability.h */,
 				218CF93820C152CD002B6993 /* AppDelegate+ACSNetWorkReachability.m */,
-				218CF93A20C15CA2002B6993 /* AppDelegate+ACSUmeng.h */,
-				218CF93B20C15CA2002B6993 /* AppDelegate+ACSUmeng.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -624,7 +619,7 @@
 		4AEDE2B91FEAA0580036655F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4EC57281198E3381A75AE0A5 /* libPods-ACSFramework.a */,
+				763FD8F7636EA00B97C2957D /* Pods_ACSFramework.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -641,7 +636,7 @@
 				4AEDE2401FEA9EF50036655F /* Frameworks */,
 				4AEDE2411FEA9EF50036655F /* Resources */,
 				211133FE20302CB900972E71 /* Embed Frameworks */,
-				BC85487E56F3E5B8BE7EC58D /* [CP] Copy Pods Resources */,
+				4DA4122BC34C1B7E18E99786 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -767,6 +762,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4DA4122BC34C1B7E18E99786 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ACSFramework/Pods-ACSFramework-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ACSFramework/Pods-ACSFramework-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9FFD178C90A2F45C6C9115AF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -785,28 +818,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BC85487E56F3E5B8BE7EC58D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ACSFramework/Pods-ACSFramework-resources.sh",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ACSFramework/Pods-ACSFramework-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -818,7 +829,6 @@
 				2105A5D52094372E00888F59 /* EncryptionTool.m in Sources */,
 				2105A5D62094372E00888F59 /* GTMBase64.m in Sources */,
 				2105A5DB209438BA00888F59 /* TimeTool.m in Sources */,
-				218CF93C20C15CA2002B6993 /* AppDelegate+ACSUmeng.m in Sources */,
 				2105A5BA20942F9700888F59 /* ACSPlaceholderTextView.m in Sources */,
 				21233E5B20D90198001BE91D /* ACSErrorView.m in Sources */,
 				4AEDE2561FEA9EF50036655F /* main.m in Sources */,

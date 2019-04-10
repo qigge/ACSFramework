@@ -30,9 +30,9 @@
     else {
         //iOS8 - iOS10
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge categories:nil]];
+        // 注册获得device Token
+        [application registerForRemoteNotifications];
     }
-    // 注册获得device Token
-    [application registerForRemoteNotifications];
 }
 
 #pragma mark - deviceToken

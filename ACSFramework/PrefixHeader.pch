@@ -12,9 +12,8 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
-#import "Masonry.h"
-#import "SVProgressHUD.h"
-#import "ReactiveObjC.h"
+#import <Masonry/Masonry.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 #import "Define.h"
 
@@ -50,9 +49,9 @@
 //屏幕大小
 #define mScreenSize [UIScreen mainScreen].bounds
 //状态栏的高度
-#define mStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+#define mStatusBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height)
 //导航栏的高度
-#define mNavBarHeight       (self.navigationController.navigationBar.frame.size.height)
+#define mNavBarHeight  44.0f
 //导航栏+状态栏的高度
 #define mTopHeight (mStatusBarHeight + mNavBarHeight)
 #define mTabBarHeight       (self.tabBarController.tabBar.frame.size.height)
