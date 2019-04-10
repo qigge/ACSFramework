@@ -49,6 +49,11 @@
     [self.placeholder drawInRect:rect withAttributes:attrs];
 }
 
+-(void)setText:(NSString *)text {
+    [super setText:text];
+    [self setNeedsDisplay];
+}
+
 
 - (void)acs_textViewTextDicChange {
     [self setNeedsDisplay];
