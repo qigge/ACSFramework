@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ACSFramework"
-  s.version      = "0.0.15"
+  s.version      = "0.0.16"
   s.summary      = "iOS 基本框架"
   s.description  = <<-DESC
                     iOS 基本框架，添加了一些常用的第三方库，并且使用pods管理；对UIView进行拓展（ACSUIKit），添加一些常用的工具（ACSTool）
@@ -65,5 +65,9 @@ Pod::Spec.new do |s|
     s.subspec 'ACSRequest' do |sp|
         sp.source_files  = "ACSFramework/Base/Request/"
         sp.dependency "AFNetworking"
+    end
+
+    s.subspec 'AuthorizationTool' do |sp|
+        sp.source_files  = "ACSFramework/Lib/ACSTool/AuthorizationTool/"
     end
 end
