@@ -44,13 +44,18 @@
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.webView.UIDelegate = nil;
+    self.webView.navigationDelegate = nil;
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (void)dealloc {
-    self.webView.UIDelegate = nil;
-    self.webView.navigationDelegate = nil;
     [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
@@ -197,7 +202,9 @@
 
 //加载完毕
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    self.title = webView.title;
+    if (!self.navigationItem.title) {
+        self.navigationItem.title = webView.title;
+    }
     [self updateProgress:webView.estimatedProgress];
     
     //处理是否适应屏幕缩放
