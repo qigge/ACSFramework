@@ -131,6 +131,8 @@
         UIButton *btn = _subBtnArr[index];
         btn.titleLabel.font = _btnSelectFont;
         btn.selected = YES;
+        
+        [_scrollView scrollRectToVisible:btn.frame animated:YES];
 
         // 移动红色的View
         CGRect redLineFrame = _redLineView.frame;
